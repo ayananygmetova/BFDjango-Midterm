@@ -24,6 +24,7 @@ class BookViewSet(viewsets.ModelViewSet):
 
 
 class JournalViewSet(viewsets.ModelViewSet):
+
     permission_classes = (IsAuthenticated,)
     queryset = Journal.objects.all()
     serializer_class = JournalSerializer

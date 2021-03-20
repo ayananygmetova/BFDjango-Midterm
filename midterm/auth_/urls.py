@@ -4,6 +4,8 @@ from django.urls import path
 router = DefaultRouter()
 router.register(r'login', LoginViewSet, basename='journal')
 
+router.register(r'register', RegisterViewSet, basename='journal')
+
 urlpatterns = [
     path('token/', obtain_jwt_token),
 ]
