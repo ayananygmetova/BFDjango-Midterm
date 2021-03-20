@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_jwt',
-    'auth_'
+    'auth_',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+AUTH_USER_MODEL = 'auth_.MainUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -92,14 +93,12 @@ USE_L10N = True
 USE_TZ = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.BasicAuthentication',
+        ),
 }
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
