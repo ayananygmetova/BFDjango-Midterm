@@ -27,9 +27,5 @@ class LoginViewSet(viewsets.ViewSet):
                 raise Exception('Неправильный пароль!')
         except User.DoesNotExist:
             raise Exception('Пользователь не найден!')
-        data = {
-            "email": email,
-            "password": password
-        }
         token = get_token(user)
         return Response(token)

@@ -20,7 +20,8 @@ class MainUserManager(BaseUserManager):
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_super_admin', True)
+        extra_fields.setdefault('is_guest', False)
 
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
@@ -35,6 +36,8 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_super_admin = models.BooleanField(default=False)
+    is_guest = models.BooleanField(default=True)
     objects = MainUserManager()
 
     USERNAME_FIELD = 'email'
