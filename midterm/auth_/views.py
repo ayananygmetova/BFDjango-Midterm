@@ -33,9 +33,9 @@ class LoginViewSet(viewsets.ViewSet):
 class RegisterViewSet(viewsets.ViewSet):
 
     def create(self, request):
+        print(self.request.data.get('email'))
         serializer=RegisterSerializer(data={"email": self.request.data.get('email'),
-                                            "password": self.request.data.get('password'),
-                                            "fio": self.request.data.get('fio')})
+                                            "password": self.request.data.get('password')})
         serializer.is_valid()
         serializer.save()
         return Response(serializer.data)
